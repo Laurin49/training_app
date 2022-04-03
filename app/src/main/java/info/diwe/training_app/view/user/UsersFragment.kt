@@ -34,6 +34,8 @@ class UsersFragment : Fragment() {
             .get(UserViewModel::class.java)
 
         binding.viewModel = viewModel
+        // make a layout respond to live data updates -> by setting the layout's lifecycle owner
+        binding.lifecycleOwner = viewLifecycleOwner
 
         return view
     }
