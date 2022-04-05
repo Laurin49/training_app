@@ -1,10 +1,9 @@
 package info.diwe.training_app.view.workout
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import com.google.android.material.appbar.MaterialToolbar
 import info.diwe.training_app.R
 import info.diwe.training_app.databinding.FragmentUsersBinding
 import info.diwe.training_app.databinding.FragmentWorkoutBinding

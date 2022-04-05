@@ -11,6 +11,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,6 +30,11 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = builder.build()
         toolbar.setupWithNavController(navController, appBarConfiguration)
 
+        // Bottom Navigation Bar
+        val bottomNavView = findViewById<BottomNavigationView>(R.id.bottom_nav)
+        bottomNavView.setupWithNavController(navController)
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -38,12 +44,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
-        when (item.itemId) {
-            R.id.workoutFragment -> item.onNavDestinationSelected(navController)
-            R.id.addUserFragment -> {
-                Toast.makeText(this, "Add User ausgewählt", Toast.LENGTH_LONG).show()
-            }
-        }
-        return super.onOptionsItemSelected(item)
+        return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
     }
 }

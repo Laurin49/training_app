@@ -7,4 +7,6 @@
     <string name="enter_user_email">Enter user email</string>
     <string name="add_user">Add User</string>
     <string name="workout">Workout</string>
+    <string name="workout_fragment">Workout Fragment</string>
+    <string name="exercise">Exercise</string>
 </resources>

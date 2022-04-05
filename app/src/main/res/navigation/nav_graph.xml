@@ -9,10 +9,30 @@
         android:id="@+id/usersFragment"
         android:name="info.diwe.training_app.view.user.UsersFragment"
         android:label="Users"
-        tools:layout="@layout/fragment_users" />
+        tools:layout="@layout/fragment_users" >
+        <action
+            android:id="@+id/action_usersFragment_to_workoutFragment"
+            app:destination="@id/workoutFragment" />
+        <action
+            android:id="@+id/action_usersFragment_to_exerciseFragment"
+            app:destination="@id/exerciseFragment" />
+    </fragment>
     <fragment
         android:id="@+id/workoutFragment"
         android:name="info.diwe.training_app.view.workout.WorkoutFragment"
         android:label="Workouts"
-        tools:layout="@layout/fragment_workout" />
+        tools:layout="@layout/fragment_workout" >
+        <action
+            android:id="@+id/action_workoutFragment_to_usersFragment"
+            app:destination="@id/usersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/exerciseFragment"
+        android:name="info.diwe.training_app.view.exercise.ExerciseFragment"
+        android:label="Exercise"
+        tools:layout="@layout/fragment_exercise">
+        <action
+            android:id="@+id/action_exerciseFragment_to_usersFragment"
+            app:destination="@id/usersFragment" />
+    </fragment>
 </navigation>
