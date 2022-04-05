@@ -1,8 +1,12 @@
 package info.diwe.training_app.view.user
 
+import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import android.view.*
+import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -40,13 +44,49 @@ class UsersFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
 
-        val fab_add_user = binding.fabAddUser
-        fab_add_user.setOnClickListener {
-            Toast.makeText(activity, "Add User ${binding.edtUserUsername.text.toString()}", Toast.LENGTH_LONG)
-                .show()
+        binding.btnNewUser.setOnClickListener {
+            val dialog_view = layoutInflater.inflate(R.layout.dialog_new_user, null)
+            val edt_Name = dialog_view.findViewById<EditText>(R.id.edt_user_username)
+            val edt_Mail = dialog_view.findViewById<EditText>(R.id.edt_user_email)
+
+            with(AlertDialog.Builder(it.context)) {
+                setView(dialog_view)
+                setTitle(getString(R.string.title_add_new_user))
+                setPositiveButton(getString(R.string.btn_save),
+                        DialogInterface.OnClickListener{ dialog, id ->
+                    save_new_user(viewModel, edt_Name.text.toString(), edt_Mail.text.toString())
+                    dialog.dismiss()
+                })
+                setNegativeButton(getString(R.string.btn_cancel),
+                        DialogInterface.OnClickListener{ dialog, id ->
+                    cancel_new_user()
+                    dialog.cancel()
+                })
+                show()
+            }
         }
 
         return view
+    }
+
+    private fun cancel_new_user() {
+        Toast.makeText(context, "Dialog New User Cancelled ...", Toast.LENGTH_LONG).show()
+    }
+
+    private fun save_new_user(viewModel: UserViewModel, newUser: String, newEmail: String) {
+        if (newUser.isNotEmpty() && newEmail.isNotEmpty()) {
+            if (!android.util.Patterns.EMAIL_ADDRESS.matcher(newEmail).matches()) {
+                Toast.makeText(context, "Bitte geben Sie eine gültige Email an !!!",
+                        Toast.LENGTH_LONG).show()
+            } else {
+                viewModel.addUser(newUser, newEmail)
+                Toast.makeText(context, "Neuer Benutzer: ${newUser}, Neue Email: $newEmail",
+                        Toast.LENGTH_LONG).show()
+            }
+        } else {
+            Toast.makeText(context, "Bitte geben Sie sowohl einen Namen als auch eine Email an !!!",
+                    Toast.LENGTH_LONG).show()
+        }
     }
 
     override fun onDestroyView() {
