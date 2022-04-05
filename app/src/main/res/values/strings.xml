@@ -9,4 +9,7 @@
     <string name="workout">Workout</string>
     <string name="workout_fragment">Workout Fragment</string>
     <string name="exercise">Exercise</string>
+    <string name="btn_save">Speichern</string>
+    <string name="btn_cancel">Abbrechen</string>
+    <string name="title_add_new_user">Neuen Benutzer eingeben !</string>
 </resources>

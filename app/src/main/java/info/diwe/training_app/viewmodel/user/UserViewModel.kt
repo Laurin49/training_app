@@ -38,4 +38,13 @@ class UserViewModel(private val dao: UserDao): ViewModel() {
             dao.create(user)
         }
     }
+
+    fun addUser(username: String, useremail: String) {
+        viewModelScope.launch {
+            val user = User()
+            user.userName = username
+            user.userEmail = useremail
+            dao.create(user)
+        }
+    }
 }

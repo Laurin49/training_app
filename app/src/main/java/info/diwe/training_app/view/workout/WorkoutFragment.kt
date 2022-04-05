@@ -2,6 +2,7 @@ package info.diwe.training_app.view.workout
 
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.appbar.MaterialToolbar
 import info.diwe.training_app.R
@@ -17,6 +18,8 @@ class WorkoutFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         _binding = FragmentWorkoutBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        binding.workoutToolbar.inflateMenu(R.menu.workout_toolbar)
 
         return view
     }
