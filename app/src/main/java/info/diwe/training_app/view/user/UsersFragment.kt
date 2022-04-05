@@ -39,6 +39,13 @@ class UsersFragment : Fragment() {
         // make a layout respond to live data updates -> by setting the layout's lifecycle owner
         binding.lifecycleOwner = viewLifecycleOwner
 
+
+        val fab_add_user = binding.fabAddUser
+        fab_add_user.setOnClickListener {
+            Toast.makeText(activity, "Add User ${binding.edtUserUsername.text.toString()}", Toast.LENGTH_LONG)
+                .show()
+        }
+
         return view
     }
 
