@@ -6,4 +6,5 @@
     <string name="enter_user_name">Enter user name</string>
     <string name="enter_user_email">Enter user email</string>
     <string name="add_user">Add User</string>
+    <string name="workout">Workout</string>
 </resources>
