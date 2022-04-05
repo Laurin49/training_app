@@ -25,8 +25,6 @@ class UsersFragment : Fragment() {
         _binding = FragmentUsersBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        setToolBarMenu(binding.toolbarUser)
-
         // Build the database, (if it doesn't already exist) and get a reference to the
         // userDao property
         val application = requireNotNull(this.activity).application
@@ -42,22 +40,6 @@ class UsersFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         return view
-    }
-
-    private fun setToolBarMenu(toolbarUser: MaterialToolbar) {
-        toolbarUser.inflateMenu(R.menu.user_toolbar)
-        // binding.toolbarUser.setNavigationIcon(resources.getDrawable(R.drawable.ic_action_back))
-        toolbarUser.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.addUserFragment -> {
-                    Toast.makeText(activity, "Add User Toolbar selected", Toast.LENGTH_LONG).show()
-                    true
-                }
-                else -> {
-                    true
-                }
-            }
-        }
     }
 
     override fun onDestroyView() {

@@ -9,19 +9,10 @@
             type="info.diwe.training_app.viewmodel.user.UserViewModel" />
     </data>
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:id="@+id/toolbar_user"
-            android:background="@color/design_default_color_primary"
-            app:titleTextColor="@color/white"
-            style="@style/Widget.MaterialComponents.ActionBar.Primary" />
 
         <EditText
             android:id="@+id/edt_user_username"
