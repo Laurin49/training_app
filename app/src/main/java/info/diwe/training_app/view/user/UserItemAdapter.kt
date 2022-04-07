@@ -3,6 +3,7 @@ package info.diwe.training_app.view.user
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -10,7 +11,8 @@ import info.diwe.training_app.R
 import info.diwe.training_app.databinding.RvUserCardviewBinding
 import info.diwe.training_app.model.user.User
 
-class UserItemAdapter: ListAdapter<User, UserItemAdapter.UserItemViewHolder>(UserDiffItemCallback()) {
+class UserItemAdapter(val clickListener: (userId: Long) -> Unit)
+    : ListAdapter<User, UserItemAdapter.UserItemViewHolder>(UserDiffItemCallback()) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserItemViewHolder {
@@ -19,7 +21,7 @@ class UserItemAdapter: ListAdapter<User, UserItemAdapter.UserItemViewHolder>(Use
 
     override fun onBindViewHolder(holder: UserItemViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item)
+        holder.bind(item, clickListener)
     }
 
     class UserItemViewHolder(val binding: RvUserCardviewBinding): RecyclerView.ViewHolder(binding.root) {
@@ -31,8 +33,13 @@ class UserItemAdapter: ListAdapter<User, UserItemAdapter.UserItemViewHolder>(Use
                 return UserItemViewHolder(binding)
             }
         }
-        fun bind(item: User) {
+        fun bind(item: User, clickListener: (userId: Long) -> Unit) {
             binding.user = item
+            binding.btnUserEdit.setOnClickListener { clickListener(item.userId) }
+            binding.btnUserRemove.setOnClickListener {
+                Toast.makeText(binding.root.context, "Remove User: ${item.userId}",
+                    Toast.LENGTH_LONG).show()
+            }
         }
     }
 }

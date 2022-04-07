@@ -45,7 +45,8 @@ class UsersFragment : Fragment() {
         // make a layout respond to live data updates -> by setting the layout's lifecycle owner
         binding.lifecycleOwner = viewLifecycleOwner
 
-        val adapter = UserItemAdapter()
+        val adapter = UserItemAdapter{ userId -> Toast.makeText(context, "Edit User: $userId",
+            Toast.LENGTH_SHORT).show() }
         binding.rvUsersList.adapter = adapter
 
         viewModel.userList.observe(viewLifecycleOwner, Observer {
