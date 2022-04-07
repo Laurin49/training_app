@@ -18,6 +18,12 @@ class UserViewModel(private val dao: UserDao): ViewModel() {
         }
     }
 
+    fun deleteUser(userId: Long) {
+        viewModelScope.launch {
+            dao.deleteUserById(userId)
+        }
+    }
+
     private val _navigateToUser = MutableLiveData<Long?>()
     val navigateToUser: LiveData<Long?>
         get() = _navigateToUser
