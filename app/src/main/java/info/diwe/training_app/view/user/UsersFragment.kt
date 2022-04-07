@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.appbar.MaterialToolbar
 import info.diwe.training_app.R
 import info.diwe.training_app.databinding.FragmentUsersBinding
@@ -47,8 +48,7 @@ class UsersFragment : Fragment() {
 
         val adapter = UserItemAdapter{ userId, mode ->
             if (mode == "edit") {
-                Toast.makeText(context, "Edit User: $userId - Mode: $mode", Toast.LENGTH_SHORT)
-                        .show()
+                viewModel.onUserClicked(userId)
             } else {
                 Toast.makeText(context, "Delete User: $userId - Mode: $mode", Toast.LENGTH_SHORT)
                         .show()
@@ -62,6 +62,13 @@ class UsersFragment : Fragment() {
             }
         })
 
+        viewModel.navigateToUser.observe(viewLifecycleOwner, Observer { userId ->
+            userId?.let {
+                val action = UsersFragmentDirections.actionUsersFragmentToUserEditFragment(userId)
+                this.findNavController().navigate(action)
+                viewModel.onUserNavigated()
+            }
+        })
 
         binding.btnNewUser.setOnClickListener {
             val dialog_view = layoutInflater.inflate(R.layout.dialog_new_user, null)

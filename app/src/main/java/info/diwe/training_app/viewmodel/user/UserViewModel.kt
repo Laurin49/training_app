@@ -1,8 +1,6 @@
 package info.diwe.training_app.viewmodel.user
 
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import info.diwe.training_app.model.user.User
 import info.diwe.training_app.model.user.UserDao
 import kotlinx.coroutines.launch
@@ -19,4 +17,11 @@ class UserViewModel(private val dao: UserDao): ViewModel() {
             dao.create(user)
         }
     }
+
+    private val _navigateToUser = MutableLiveData<Long?>()
+    val navigateToUser: LiveData<Long?>
+        get() = _navigateToUser
+
+    fun onUserClicked(userId: Long) { _navigateToUser.value = userId }
+    fun onUserNavigated() { _navigateToUser.value = null }
 }

@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_usersFragment_to_exerciseFragment"
             app:destination="@id/exerciseFragment" />
+        <action
+            android:id="@+id/action_usersFragment_to_userEditFragment"
+            app:destination="@id/userEditFragment" />
     </fragment>
     <fragment
         android:id="@+id/workoutFragment"
@@ -34,5 +37,19 @@
         <action
             android:id="@+id/action_exerciseFragment_to_usersFragment"
             app:destination="@id/usersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userEditFragment"
+        android:name="info.diwe.training_app.view.user.UserEditFragment"
+        android:label="UserEdit"
+        tools:layout="@layout/fragment_user_edit">
+        <argument
+            android:name="userId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_userEditFragment_to_usersFragment"
+            app:destination="@id/usersFragment"
+            app:popUpTo="@id/usersFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
