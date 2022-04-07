@@ -41,7 +41,7 @@
     <fragment
         android:id="@+id/userEditFragment"
         android:name="info.diwe.training_app.view.user.UserEditFragment"
-        android:label="UserEdit"
+        android:label="Edit User"
         tools:layout="@layout/fragment_user_edit">
         <argument
             android:name="userId"

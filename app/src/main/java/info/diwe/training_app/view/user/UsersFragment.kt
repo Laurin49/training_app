@@ -50,8 +50,17 @@ class UsersFragment : Fragment() {
             if (mode == "edit") {
                 viewModel.onUserClicked(userId)
             } else {
-                Toast.makeText(context, "Delete User: $userId - Mode: $mode", Toast.LENGTH_SHORT)
-                        .show()
+                val delDialog = with(AlertDialog.Builder(this.requireContext())) {
+                    setTitle(getString(R.string.dlg_title_delete_user))
+                    setPositiveButton("Ok", DialogInterface.OnClickListener { dialog, _ ->
+                        viewModel.deleteUser(userId)
+                        dialog.dismiss()
+                    })
+                    setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, _ ->
+                        dialog.cancel()
+                    })
+                    show()
+                }
             }
         }
         binding.rvUsersList.adapter = adapter

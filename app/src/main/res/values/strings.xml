@@ -14,4 +14,6 @@
     <string name="title_add_new_user">Neuen Benutzer eingeben !</string>
     <string name="tooltip_edit_user">Edit User</string>
     <string name="tooltip_delete_user">Delete User</string>
+    <string name="edit_user">Edit User</string>
+    <string name="dlg_title_delete_user">Möchten sie den Benutzer wirklich löschen ?</string>
 </resources>

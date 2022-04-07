@@ -12,6 +12,9 @@ interface UserDao {
     @Delete
     suspend fun delete(user: User)
 
+    @Query("DELETE FROM users WHERE userId = :userId")
+    suspend fun deleteUserById(userId: Long)
+
     @Query("SELECT * FROM users WHERE userId = :userId")
     fun read(userId: Long): LiveData<User>
 

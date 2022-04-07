@@ -15,12 +15,35 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btn_new_user"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:text="@string/add_user" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical|end"
+            android:paddingEnd="8dp"
+            android:paddingTop="4dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_user"
+                android:layout_marginEnd="4dp"
+                android:textSize="16sp" />
+
+            <ImageButton
+                android:id="@+id/btn_new_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_user"
+                android:tooltipText="@string/add_user"
+                android:src="@drawable/ic_user_add" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_users_list"
