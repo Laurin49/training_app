@@ -28,6 +28,12 @@
         <action
             android:id="@+id/action_workoutFragment_to_usersFragment"
             app:destination="@id/usersFragment" />
+        <action
+            android:id="@+id/action_workoutFragment_to_createWorkoutFragment"
+            app:destination="@id/createWorkoutFragment" />
+        <action
+            android:id="@+id/action_workoutFragment_to_updateWorkoutFragment"
+            app:destination="@id/updateWorkoutFragment" />
     </fragment>
     <fragment
         android:id="@+id/exerciseFragment"
@@ -51,5 +57,28 @@
             app:destination="@id/usersFragment"
             app:popUpTo="@id/usersFragment"
             app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/createWorkoutFragment"
+        android:name="info.diwe.training_app.view.workout.CreateWorkoutFragment"
+        android:label="Create Workout"
+        tools:layout="@layout/fragment_create_workout">
+        <action
+            android:id="@+id/action_createWorkoutFragment_to_workoutFragment"
+            app:destination="@id/workoutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateWorkoutFragment"
+        android:name="info.diwe.training_app.view.workout.UpdateWorkoutFragment"
+        android:label="Update Workout"
+        tools:layout="@layout/fragment_update_workout">
+        <argument
+            android:name="workoutId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_updateWorkoutFragment_to_workoutFragment"
+            app:destination="@id/workoutFragment"
+            app:popUpTo="@id/workoutFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
 </navigation>

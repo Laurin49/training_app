@@ -6,10 +6,13 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import info.diwe.training_app.model.user.User
 import info.diwe.training_app.model.user.UserDao
+import info.diwe.training_app.model.workout.Workout
+import info.diwe.training_app.model.workout.WorkoutDao
 
-@Database(entities = [User::class], version = 1, exportSchema = false)
+@Database(entities = [User::class, Workout::class], version = 1, exportSchema = false)
 abstract class TrainingAppDatabase: RoomDatabase() {
-    abstract val userDao: UserDao
+    abstract fun userDao(): UserDao
+    abstract fun workoutDao(): WorkoutDao
 
     companion object {
         @Volatile

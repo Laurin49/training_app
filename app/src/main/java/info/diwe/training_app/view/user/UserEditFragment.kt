@@ -29,7 +29,7 @@ class UserEditFragment : Fragment() {
         val userId = UserEditFragmentArgs.fromBundle(requireArguments()).userId
 
         val application = requireNotNull(this.activity).application
-        val dao = TrainingAppDatabase.getInstance(application).userDao
+        val dao = TrainingAppDatabase.getInstance(application).userDao()
 
         val viewModelFactory = UserEditViewModelFactory(userId, dao)
         val viewModel = ViewModelProvider(this, viewModelFactory).get(UserEditViewModel::class.java)
