@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import info.diwe.training_app.model.user.UserDao
 
+@Suppress("UNCHECKED_CAST")
 class UserEditViewModelFactory(private val userId: Long, private val dao: UserDao):
         ViewModelProvider.Factory {
 

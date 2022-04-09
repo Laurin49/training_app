@@ -16,4 +16,11 @@
     <string name="tooltip_delete_user">Delete User</string>
     <string name="edit_user">Edit User</string>
     <string name="dlg_title_delete_user">Möchten sie den Benutzer wirklich löschen ?</string>
+    <string name="add_workout">Add Workout</string>
+    <string name="tooltip_edit_workout">Edit Workout</string>
+    <string name="tooltip_delete_workout">Delete Workout</string>
+    <string name="create_workout_fragment">Create Workout Fragment</string>
+    <string name="workout_name">Workout Name</string>
+    <string name="dlg_title_workout_loeschen">Workout wirklich löschen ?</string>
+    <string name="dlg_cancel">Cancel</string>
 </resources>

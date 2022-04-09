@@ -35,7 +35,7 @@ class UsersFragment : Fragment() {
         // Build the database, (if it doesn't already exist) and get a reference to the
         // userDao property
         val application = requireNotNull(this.activity).application
-        val dao = TrainingAppDatabase.getInstance(application).userDao
+        val dao = TrainingAppDatabase.getInstance(application).userDao()
 
 
         val viewModelFactory = UserViewModelFactory(dao)
@@ -50,7 +50,7 @@ class UsersFragment : Fragment() {
             if (mode == "edit") {
                 viewModel.onUserClicked(userId)
             } else {
-                val delDialog = with(AlertDialog.Builder(this.requireContext())) {
+                with(AlertDialog.Builder(this.requireContext())) {
                     setTitle(getString(R.string.dlg_title_delete_user))
                     setPositiveButton("Ok", DialogInterface.OnClickListener { dialog, _ ->
                         viewModel.deleteUser(userId)
@@ -89,7 +89,7 @@ class UsersFragment : Fragment() {
                 setTitle(getString(R.string.title_add_new_user))
                 setPositiveButton(getString(R.string.btn_save), null)
                 setNegativeButton(getString(R.string.btn_cancel),
-                        DialogInterface.OnClickListener{ dialog, id ->
+                        DialogInterface.OnClickListener{ dialog, _ ->
                     cancel_new_user()
                     dialog.cancel()
                 })
