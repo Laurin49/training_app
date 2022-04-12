@@ -29,6 +29,16 @@
                 android:text="@{workout.workoutName}"
                 android:textSize="16sp" />
 
+            <TextView
+                android:id="@+id/tv_workout_datum"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="date"
+                android:padding="8dp"
+                android:text="@{workout.workoutDatum.toString()}"
+                android:textSize="16sp" />
+
             <ImageButton
                 android:id="@+id/btn_workout_edit"
                 android:layout_width="wrap_content"
