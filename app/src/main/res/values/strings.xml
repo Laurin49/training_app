@@ -23,4 +23,6 @@
     <string name="workout_name">Workout Name</string>
     <string name="dlg_title_workout_loeschen">Workout wirklich löschen ?</string>
     <string name="dlg_cancel">Cancel</string>
+    <string name="date_picker">Date Picker</string>
+    <string name="hint_datum">dd.MM.yyyy</string>
 </resources>

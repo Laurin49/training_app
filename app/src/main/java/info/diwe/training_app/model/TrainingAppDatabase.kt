@@ -4,12 +4,14 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import info.diwe.training_app.model.user.User
 import info.diwe.training_app.model.user.UserDao
 import info.diwe.training_app.model.workout.Workout
 import info.diwe.training_app.model.workout.WorkoutDao
 
 @Database(entities = [User::class, Workout::class], version = 1, exportSchema = false)
+@TypeConverters(Converters::class)
 abstract class TrainingAppDatabase: RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun workoutDao(): WorkoutDao

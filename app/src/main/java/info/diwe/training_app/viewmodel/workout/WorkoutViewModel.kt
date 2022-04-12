@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import info.diwe.training_app.model.workout.Workout
 import info.diwe.training_app.model.workout.WorkoutDao
 import kotlinx.coroutines.launch
+import java.util.*
 
 class WorkoutViewModel(private val dao: WorkoutDao): ViewModel() {
 
@@ -15,6 +16,16 @@ class WorkoutViewModel(private val dao: WorkoutDao): ViewModel() {
     fun addWorkout(workoutName: String) {
         viewModelScope.launch {
             val workout = Workout()
+            workout.workoutDatum = Date()
+            workout.workoutName = workoutName
+            dao.createWorkout(workout)
+        }
+    }
+
+    fun addWorkout(workoutName: String, workoutDatum: Date) {
+        viewModelScope.launch {
+            val workout = Workout()
+            workout.workoutDatum = workoutDatum
             workout.workoutName = workoutName
             dao.createWorkout(workout)
         }

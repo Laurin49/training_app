@@ -1,11 +1,13 @@
 package info.diwe.training_app.viewmodel.workout
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import info.diwe.training_app.model.workout.WorkoutDao
 import kotlinx.coroutines.launch
+import java.util.*
 
 class WorkoutEditViewModel(val workoutId: Long, val dao: WorkoutDao): ViewModel() {
 
@@ -14,6 +16,16 @@ class WorkoutEditViewModel(val workoutId: Long, val dao: WorkoutDao): ViewModel(
     fun updateWorkout() {
         viewModelScope.launch {
             dao.updateWorkout(workout.value!!)
+            _navigateToWorkoutList.value = true
+        }
+    }
+
+    fun updateWorkout(name: String, datum: Date) {
+        viewModelScope.launch {
+            workout.value?.workoutName = name
+            workout.value?.workoutDatum = datum
+
+             dao.updateWorkout(workout.value!!)
             _navigateToWorkoutList.value = true
         }
     }
