@@ -13,8 +13,13 @@ import android.widget.DatePicker
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import info.diwe.training_app.R
 import info.diwe.training_app.databinding.FragmentExerciseBinding
+import info.diwe.training_app.model.TrainingAppDatabase
+import info.diwe.training_app.viewmodel.exercise.ExerciseViewModel
+import info.diwe.training_app.viewmodel.exercise.ExerciseViewModelFactory
 import java.time.Instant
 import java.time.LocalDate
 import java.time.Month
@@ -29,31 +34,42 @@ class ExerciseFragment : Fragment() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentExerciseBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        var formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
-        var currentDate = Date().toInstant()
-                .atZone(ZoneId.systemDefault())
-                .toLocalDate()
-        binding.edtWorkoutDatum.setText(currentDate.format(formatter))
+        // Build the database, (if it doesn't already exist) and get a reference to the
+        // userDao property
+        val application = requireNotNull(this.activity).application
+        val dao = TrainingAppDatabase.getInstance(application).exerciseDao()
 
-        binding.btnDataPicker.setOnClickListener {
-            val dpickerFragment = DatePickerFragment(binding)
-            activity?.let { it1 ->
-                dpickerFragment.show(it1.supportFragmentManager, "datePicker")
+        val viewModelFactory = ExerciseViewModelFactory(dao)
+        val viewModel = ViewModelProvider(this, viewModelFactory).get(ExerciseViewModel::class.java)
+
+        binding.exerciseVM = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+
+        val adapter = ExerciseItemAdapter{ exerciseId, mode ->
+            if (mode == "edit") {
+
+            } else {
+
             }
         }
+        binding.rvExerciseList.adapter = adapter
 
-        binding.edtWorkoutDatum.setOnClickListener {
-            val dpickerFragment = DatePickerFragment(binding)
-            activity?.let { it1 ->
-                dpickerFragment.show(it1.supportFragmentManager, "datePicker")
+        viewModel.exerciseList.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            it?.let {
+                adapter.submitList(it)
             }
+        })
+
+        binding.btnNewExercise.setOnClickListener {
+            this.findNavController().navigate(R.id.action_exerciseFragment_to_addExerciseFragment)
         }
+
         return view
     }
 
@@ -62,34 +78,4 @@ class ExerciseFragment : Fragment() {
         super.onDestroyView()
     }
 
-    class DatePickerFragment(val binding: FragmentExerciseBinding): DialogFragment(), DatePickerDialog.OnDateSetListener {
-
-        override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-            val c = Calendar.getInstance()
-            val year = c.get(Calendar.YEAR)
-            val month = c.get(Calendar.MONTH)
-            val day = c.get(Calendar.DAY_OF_MONTH)
-            return DatePickerDialog(this.requireContext(), this, year, month, day)
-        }
-
-        @RequiresApi(Build.VERSION_CODES.O)
-        override fun onDateSet(view: DatePicker, year: Int, month: Int, day: Int) {
-            val cal: Calendar = Calendar.getInstance(TimeZone.getTimeZone("Europe/Berlin"))
-            cal.set(year, month, day)
-            cal.add(Calendar.HOUR, 2)
-            var date: Date = cal.time
-
-            var formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
-            var currentDate = date
-                    .toInstant()
-                    .atZone(ZoneId.systemDefault())
-                    .toLocalDate()
-
-            binding.edtWorkoutDatum.setText(currentDate.format(formatter))
-            binding.tvWorkoutDatum.setText(currentDate.format(formatter))
-            Toast.makeText(context, "Datum: $date", Toast.LENGTH_LONG).show()
-        }
-
-    }
 }
-

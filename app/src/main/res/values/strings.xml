@@ -25,4 +25,9 @@
     <string name="dlg_cancel">Cancel</string>
     <string name="date_picker">Date Picker</string>
     <string name="hint_datum">dd.MM.yyyy</string>
+    <string name="add_exercise">Add Exercise</string>
+    <string name="tooltip_edit_exercise">Edit Exercise</string>
+    <string name="tooltip_delete_exercise">Delete Exercise</string>
+    <string name="exercise_name">Exercise Name</string>
+    <string name="exercise_category">Exercise Category</string>
 </resources>

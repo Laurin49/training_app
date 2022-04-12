@@ -43,6 +43,12 @@
         <action
             android:id="@+id/action_exerciseFragment_to_usersFragment"
             app:destination="@id/usersFragment" />
+        <action
+            android:id="@+id/action_exerciseFragment_to_addExerciseFragment"
+            app:destination="@id/addExerciseFragment" />
+        <action
+            android:id="@+id/action_exerciseFragment_to_updateExerciseFragment"
+            app:destination="@id/updateExerciseFragment" />
     </fragment>
     <fragment
         android:id="@+id/userEditFragment"
@@ -79,6 +85,28 @@
             android:id="@+id/action_updateWorkoutFragment_to_workoutFragment"
             app:destination="@id/workoutFragment"
             app:popUpTo="@id/workoutFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/addExerciseFragment"
+        android:name="info.diwe.training_app.view.exercise.AddExerciseFragment"
+        android:label="Add Exercise">
+        <action
+            android:id="@+id/action_addExerciseFragment_to_exerciseFragment"
+            app:destination="@id/exerciseFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateExerciseFragment"
+        android:name="info.diwe.training_app.view.exercise.UpdateExerciseFragment"
+        android:label="Update Exercise"
+        tools:layout="@layout/fragment_update_exercise">
+        <argument
+            android:name="exerciseId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_updateExerciseFragment_to_exerciseFragment"
+            app:destination="@id/exerciseFragment"
+            app:popUpTo="@id/exerciseFragment"
             app:popUpToInclusive="true"/>
     </fragment>
 </navigation>

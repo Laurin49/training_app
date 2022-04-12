@@ -1,44 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
     tools:context=".view.exercise.ExerciseFragment">
+    <data>
+        <variable
+            name="exerciseVM"
+            type="info.diwe.training_app.viewmodel.exercise.ExerciseViewModel" />
+    </data>
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Exercise Fragment"
-        android:textSize="30sp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/btn_data_picker"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/date_picker"
-        android:layout_marginTop="30dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical|end"
+            android:paddingEnd="8dp"
+            android:paddingTop="4dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_exercise"
+                android:layout_marginEnd="4dp"
+                android:textSize="16sp" />
+            <ImageButton
+                android:id="@+id/btn_new_exercise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_exercise"
+                android:tooltipText="@string/add_exercise"
+                android:src="@drawable/ic_exercise" />
+        </LinearLayout>
 
-    <EditText
-        android:id="@+id/edt_workout_datum"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:editable="false"
-        android:hint="@string/hint_datum"
-        android:inputType="date|datetime"
-        android:selectAllOnFocus="true"
-        android:textSize="16sp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_exercise_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="top"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-    <TextView
-        android:id="@+id/tv_workout_datum"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Datum:"
-        android:textSize="24sp" />
-
-</LinearLayout>
+    </LinearLayout>
+</layout>
