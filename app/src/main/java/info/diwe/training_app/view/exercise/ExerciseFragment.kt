@@ -1,7 +1,9 @@
 package info.diwe.training_app.view.exercise
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.Dialog
+import android.content.DialogInterface
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -53,9 +55,21 @@ class ExerciseFragment : Fragment() {
 
         val adapter = ExerciseItemAdapter{ exerciseId, mode ->
             if (mode == "edit") {
-
+                val action = ExerciseFragmentDirections.actionExerciseFragmentToUpdateExerciseFragment(exerciseId)
+                this.findNavController().navigate(action)
             } else {
-
+                with(AlertDialog.Builder(requireContext())) {
+                    setTitle(getString(R.string.dlg_exercise_loeschen))
+                    setPositiveButton("Ok", DialogInterface.OnClickListener{ dialog, _ ->
+                        viewModel.deleteExercise(exerciseId)
+                        dialog.dismiss()
+                    })
+                    setNegativeButton(getString(R.string.dlg_cancel), DialogInterface.OnClickListener {
+                        dialog, _ ->
+                        dialog.cancel()
+                    })
+                    show()
+                }
             }
         }
         binding.rvExerciseList.adapter = adapter

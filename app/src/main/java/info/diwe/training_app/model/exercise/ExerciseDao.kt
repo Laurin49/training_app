@@ -17,6 +17,9 @@ interface ExerciseDao {
     suspend fun deleteExerciseById(exerciseId: Long)
 
     @Query("SELECT * FROM exercises WHERE exerciseId = :exerciseId")
+    suspend fun readExerciseById(exerciseId: Long): Exercise
+
+    @Query("SELECT * FROM exercises WHERE exerciseId = :exerciseId")
     fun readExercise(exerciseId: Long): LiveData<Exercise>
 
     @Query("SELECT * FROM exercises ORDER BY exerciseId DESC")

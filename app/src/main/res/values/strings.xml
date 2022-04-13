@@ -30,4 +30,5 @@
     <string name="tooltip_delete_exercise">Delete Exercise</string>
     <string name="exercise_name">Exercise Name</string>
     <string name="exercise_category">Exercise Category</string>
+    <string name="dlg_exercise_loeschen">Exercise wirklich löschen ?</string>
 </resources>
